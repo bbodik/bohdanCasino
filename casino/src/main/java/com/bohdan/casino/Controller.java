@@ -11,5 +11,11 @@ private Pane mainMenuPane;
     @FXML
     protected void startClassicMode(){
         mainMenuPane.setVisible(false);
+
+    }
+    @FXML
+    protected void startCrashMode(){
+        mainMenuPane.setVisible(false);
+
     }
 }
