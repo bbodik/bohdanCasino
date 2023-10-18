@@ -10,8 +10,8 @@
       <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
-
-            </ImageView>
+               <image>
+               </image></ImageView>
             <Label layoutX="122.0" layoutY="44.0" text="Bohdan Casino">
                <font>
                   <Font name="Ravie" size="38.0" />
