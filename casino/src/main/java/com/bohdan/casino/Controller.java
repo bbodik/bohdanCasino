@@ -112,6 +112,7 @@ public class Controller {
         counter = iconsArr.size();
         spinning = true;
         spinButton.setDisable(true);
+        comboBoxClassick.setDisable(true);
         classicCircle.setFill(Color.WHITE);
         Thread[] threads = new Thread[iconsArr.size()];
 
@@ -162,6 +163,7 @@ public class Controller {
                 counter--;
                 if (counter == 0) {
                     spinning = false;
+                    comboBoxClassick.setDisable(false);
                     spinButton.setDisable(false);
                     checkWinInClassick();
                 }
