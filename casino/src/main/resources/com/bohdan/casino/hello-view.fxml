@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
@@ -40,6 +41,10 @@
                   <Font name="MS Gothic" size="27.0" />
                </font>
             </Button>
+            <Circle fx:id="classicCircle" fill="WHITE" layoutX="522.0" layoutY="110.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="13.0" layoutY="36.0" prefHeight="35.0" prefWidth="150.0" text="Ймовірність виграти = " />
+            <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.077%" />
+            <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
          </children></Pane>
    </children>
 </Pane>
