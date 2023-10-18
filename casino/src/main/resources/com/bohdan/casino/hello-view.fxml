@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
    <children>
-      <Pane fx:id="mainMenuPane" prefHeight="400.0" prefWidth="600.0">
+      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
          <children>
+            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+               </image></ImageView>
             <Label layoutX="122.0" layoutY="44.0" text="Bohdan Casino">
                <font>
                   <Font name="Ravie" size="38.0" />
@@ -18,7 +22,24 @@
                   <Font name="Papyrus" size="13.0" />
                </font>
             </Button>
+            <Button fx:id="crashButton" layoutX="144.0" layoutY="186.0" mnemonicParsing="false" onAction="#startCrashMode" prefHeight="35.0" prefWidth="74.0" text="Crash" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Papyrus" size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
+      <Pane fx:id="classicGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
+         <children>
+            <ImageView fx:id="icon1" fitHeight="100.0" fitWidth="100.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon2" fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon3" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon4" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="spinButton" layoutX="126.0" layoutY="235.0" mnemonicParsing="false" onAction="#spin" prefHeight="55.0" prefWidth="355.0" text="Крутити">
+               <font>
+                  <Font name="MS Gothic" size="27.0" />
+               </font>
+            </Button>
+         </children></Pane>
    </children>
 </Pane>

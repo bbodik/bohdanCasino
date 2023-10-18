@@ -1,6 +1,7 @@
 module com.bohdan.casino {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     requires com.dlsc.formsfx;
     requires com.almasb.fxgl.all;
