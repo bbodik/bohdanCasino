@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
    <children>
-      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
+      <Pane fx:id="mainMenuPane" opacity="0.0" prefHeight="337.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,6 +29,18 @@
             </Button>
          </children>
       </Pane>
-      <Pane prefHeight="337.0" prefWidth="600.0" />
+      <Pane prefHeight="337.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="icon1" fitHeight="100.0" fitWidth="100.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon2" fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon3" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon4" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon5" fitHeight="100.0" fitWidth="100.0" layoutX="450.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="126.0" layoutY="235.0" mnemonicParsing="false" onAction="#spin" prefHeight="55.0" prefWidth="355.0" text="Крутити">
+               <font>
+                  <Font name="MS Gothic" size="27.0" />
+               </font>
+            </Button>
+         </children></Pane>
    </children>
 </Pane>
