@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
    <children>
-      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
+      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0" visible="false">
          <children>
             <ImageView fitHeight="337.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -47,16 +47,16 @@
             <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
             <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
          </children></Pane>
-      <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
+      <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0">
          <children>
             <Line endX="-100.0" endY="258.0" layoutX="128.0" layoutY="34.0" startX="-100.0" strokeWidth="2.0" />
             <Line endX="282.0" fill="BLACK" layoutX="130.0" layoutY="293.0" startX="-100.0" strokeWidth="2.0" />
-            <Button fx:id="upButton" layoutX="512.0" layoutY="21.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Полетіли">
+            <Button fx:id="upButton" layoutX="512.0" layoutY="21.0" mnemonicParsing="false" onAction="#Poletily" prefHeight="25.0" prefWidth="74.0" text="Полетіли">
                <font>
                   <Font name="Serif Regular" size="13.0" />
                </font>
             </Button>
-            <Label layoutX="173.0" layoutY="94.0" prefHeight="55.0" prefWidth="116.0" text="0.00">
+            <Label fx:id="numOfWin" layoutX="173.0" layoutY="94.0" prefHeight="58.0" prefWidth="150.0" text="0.00">
                <font>
                   <Font name="JetBrains Mono ExtraBold" size="43.0" />
                </font>

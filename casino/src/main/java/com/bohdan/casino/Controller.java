@@ -1,6 +1,7 @@
 package com.bohdan.casino;
 
 import com.almasb.fxgl.dsl.FXGL;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import java.text.DecimalFormat;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,6 +22,7 @@ import java.util.Random;
 public class Controller {
 
     private int counter, level = 4;
+    Random rnd = new Random();
     private final Image[] icons = {
             new Image(getClass().getResourceAsStream("/lemon.png")),
             new Image(getClass().getResourceAsStream("/cherry.png")),
@@ -28,22 +31,54 @@ public class Controller {
             new Image(getClass().getResourceAsStream("/coin.png")),
             new Image(getClass().getResourceAsStream("/seven.png"))
     };
+    private Image planeImage = new Image(getClass().getResourceAsStream("/rocket.png"));
 
     @FXML
     private Circle classicCircle;
     @FXML
     private Pane mainMenuPane, classicGamePane, crashGamePane;
     @FXML
-    private Button spinButton, upButton, stopButton,backToMainMenuButtonInClassicGame;
+    private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame;
     @FXML
     private ImageView icon1, icon2, icon3, icon4, planeCrash;
     @FXML
     private ComboBox<String> comboBoxClassick;
     @FXML
-    private Label classickChanse;
+    private Label classickChanse, numOfWin;
     private ArrayList<ImageView> iconsArr = new ArrayList<>();
 
     private boolean spinning = false;
+
+    @FXML
+    protected void Poletily() {
+        double pointOfDeath = generateDeathPoint();
+        upButton.setDisable(true);
+        stopButton.setDisable(false);
+        DecimalFormat df = new DecimalFormat("#.##");
+        new Thread(() -> {
+            for (int j = 0; j < pointOfDeath * 100; j += 1) {
+                double labelNum = j / 100.0;
+                Platform.runLater(() -> numOfWin.setText(df.format(labelNum)));
+                if (j <= 255) {
+                    Platform.runLater(() -> {
+                        planeCrash.setX(planeCrash.getX() + 1);
+                        planeCrash.setRotate((80.0 * (1 - (planeCrash.getX() / 255.0))));
+                        if (labelNum % 3 == 0 || labelNum % 5 == 0) {
+                            System.out.println("1231321");
+                            planeCrash.setY(planeCrash.getY() - 1);
+                        }
+                    });
+                }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.out.println("not sleep");
+                }
+            }
+        }).start();
+    }
+
 
     @FXML
     protected void startClassicMode() {
@@ -64,8 +99,9 @@ public class Controller {
         );
         comboBoxClassick.setItems(options);
     }
+
     @FXML
-    protected void backToMainMenuButton(){
+    protected void backToMainMenuButton() {
         mainMenuPane.setVisible(true);
         crashGamePane.setVisible(false);
         classicGamePane.setVisible(false);
@@ -108,6 +144,7 @@ public class Controller {
     protected void startCrashMode() {
         mainMenuPane.setVisible(false);
         crashGamePane.setVisible(true);
+        planeCrash.setImage(planeImage);
     }
 
     @FXML
@@ -153,7 +190,7 @@ public class Controller {
 
     private Thread createIconThread(ImageView icon, Image[] icons, Object lock) {
         return new Thread(() -> {
-            Random rnd = new Random();
+
             int gayIndex = 7;
             int randomTime = rnd.nextInt(13, 20);
             for (int i = 0; i < randomTime; i++) {
@@ -191,5 +228,23 @@ public class Controller {
                 }
             }
         });
+    }
+
+    public double generateDeathPoint() {
+        double multiplier = 1.0; // Початковий множник
+        double currentNumber = 1.0; // Початкове число
+
+        while (true) {
+            double randomNumber = rnd.nextDouble(); // Генеруємо випадкове число від 0.0 до 1.0
+
+            if (randomNumber > 1.0 / (currentNumber * 0.5)) {
+                // Вибух
+                return currentNumber;
+            }
+
+            // Збільшуємо число
+            multiplier += 0.1; // Можете налаштувати збільшення множника за вашими потребами
+            currentNumber *= multiplier;
+        }
     }
 }
