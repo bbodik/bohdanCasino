@@ -32,11 +32,11 @@ public class Controller {
     @FXML
     private Circle classicCircle;
     @FXML
-    private Pane mainMenuPane, classicGamePane;
+    private Pane mainMenuPane, classicGamePane, crashGamePane;
     @FXML
-    private Button spinButton;
+    private Button spinButton, upButton, stopButton;
     @FXML
-    private ImageView icon1, icon2, icon3, icon4;
+    private ImageView icon1, icon2, icon3, icon4, planeCrash;
     @FXML
     private ComboBox<String> comboBoxClassick;
     @FXML
@@ -101,6 +101,7 @@ public class Controller {
     @FXML
     protected void startCrashMode() {
         mainMenuPane.setVisible(false);
+        crashGamePane.setVisible(true);
     }
 
     @FXML
