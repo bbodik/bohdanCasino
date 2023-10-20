@@ -71,7 +71,7 @@ public class Controller {
 
         if (selectedValue != null) {
             if (selectedValue.equals("Легкий")) {
-                classickChanse.setText("2.777%");
+                classickChanse.setText("16.666%");
                 level = 2;
                 iconsArr.clear();
                 iconsArr.add(icon1);
@@ -79,7 +79,7 @@ public class Controller {
                 icon3.setImage(null);
                 icon4.setImage(null);
             } else if (selectedValue.equals("Середній")) {
-                classickChanse.setText("0.462%");
+                classickChanse.setText("2.777%");
                 level = 3;
                 iconsArr.clear();
                 iconsArr.add(icon1);
@@ -88,7 +88,7 @@ public class Controller {
                 icon4.setImage(null);
             } else if (selectedValue.equals("Важкий")) {
                 level = 4;
-                classickChanse.setText("0.077%");
+                classickChanse.setText("0.462%");
                 iconsArr.clear();
                 iconsArr.add(icon1);
                 iconsArr.add(icon2);
@@ -147,12 +147,24 @@ public class Controller {
     private Thread createIconThread(ImageView icon, Image[] icons, Object lock) {
         return new Thread(() -> {
             Random rnd = new Random();
+            int gayIndex = 7;
             int randomTime = rnd.nextInt(15, 20);
             for (int i = 0; i < randomTime; i++) {
                 int randomIcon = rnd.nextInt(6);
-                synchronized (lock) {
-                    icon.setImage(icons[randomIcon]);
+                if (gayIndex != randomIcon) {
+                    synchronized (lock) {
+                        icon.setImage(icons[randomIcon]);
+                    }
+                } else if (randomIcon >= 0 && randomIcon <= 4) {
+                    synchronized (lock) {
+                        icon.setImage(icons[randomIcon + 1]);
+                    }
+                } else if (randomIcon >= 1 && randomIcon <= 6){
+                    synchronized (lock) {
+                        icon.setImage(icons[randomIcon - 1]);
+                    }
                 }
+                gayIndex = randomIcon;
                 try {
                     Thread.sleep(700 - i * 34);
                 } catch (InterruptedException e) {
