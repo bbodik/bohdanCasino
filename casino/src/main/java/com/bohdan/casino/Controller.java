@@ -34,7 +34,7 @@ public class Controller {
     @FXML
     private Pane mainMenuPane, classicGamePane, crashGamePane;
     @FXML
-    private Button spinButton, upButton, stopButton;
+    private Button spinButton, upButton, stopButton,backToMainMenuButtonInClassicGame;
     @FXML
     private ImageView icon1, icon2, icon3, icon4, planeCrash;
     @FXML
@@ -63,6 +63,12 @@ public class Controller {
                 "Важкий"
         );
         comboBoxClassick.setItems(options);
+    }
+    @FXML
+    protected void backToMainMenuButton(){
+        mainMenuPane.setVisible(true);
+        crashGamePane.setVisible(false);
+        classicGamePane.setVisible(false);
     }
 
     @FXML
@@ -149,20 +155,23 @@ public class Controller {
         return new Thread(() -> {
             Random rnd = new Random();
             int gayIndex = 7;
-            int randomTime = rnd.nextInt(15, 20);
+            int randomTime = rnd.nextInt(13, 20);
             for (int i = 0; i < randomTime; i++) {
-                int randomIcon = rnd.nextInt(6);
+                int randomIcon = rnd.nextInt(icons.length);
                 if (gayIndex != randomIcon) {
                     synchronized (lock) {
                         icon.setImage(icons[randomIcon]);
+
                     }
-                } else if (randomIcon >= 0 && randomIcon <= 4) {
+                } else if (randomIcon != icons.length - 1) {
                     synchronized (lock) {
                         icon.setImage(icons[randomIcon + 1]);
+
                     }
-                } else if (randomIcon >= 1 && randomIcon <= 6){
+                } else if (randomIcon != 0) {
                     synchronized (lock) {
                         icon.setImage(icons[randomIcon - 1]);
+
                     }
                 }
                 gayIndex = randomIcon;

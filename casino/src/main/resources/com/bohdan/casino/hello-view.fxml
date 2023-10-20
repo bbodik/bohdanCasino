@@ -8,9 +8,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
    <children>
-      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0" visible="false">
+      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="337.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
                </image></ImageView>
             <Label layoutX="122.0" layoutY="44.0" text="Bohdan Casino">
@@ -45,8 +45,9 @@
             <Label layoutX="13.0" layoutY="36.0" prefHeight="35.0" prefWidth="150.0" text="Ймовірність виграти = " />
             <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.462%" />
             <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
+            <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
          </children></Pane>
-      <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0">
+      <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
          <children>
             <Line endX="-100.0" endY="258.0" layoutX="128.0" layoutY="34.0" startX="-100.0" strokeWidth="2.0" />
             <Line endX="282.0" fill="BLACK" layoutX="130.0" layoutY="293.0" startX="-100.0" strokeWidth="2.0" />
@@ -70,6 +71,7 @@
                   <Font name="Serif Regular" size="13.0" />
                </font>
             </Button>
+            <Button fx:id="backToMainMenuButtonInCrashGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
             <ImageView fx:id="planeCrash" fitHeight="120.0" fitWidth="60.0" layoutX="59.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
          </children></Pane>
    </children>
