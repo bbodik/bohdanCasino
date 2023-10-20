@@ -56,12 +56,12 @@
                   <Font name="Serif Regular" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="numOfWin" layoutX="173.0" layoutY="94.0" prefHeight="58.0" prefWidth="150.0" text="0.00">
+            <Label fx:id="numOfWin" layoutX="57.0" layoutY="67.0" prefHeight="58.0" prefWidth="150.0" text="0.00">
                <font>
                   <Font name="JetBrains Mono ExtraBold" size="43.0" />
                </font>
             </Label>
-            <Label layoutX="277.0" layoutY="106.0" text="х">
+            <Label layoutX="160.0" layoutY="79.0" text="х">
                <font>
                   <Font size="24.0" />
                </font>

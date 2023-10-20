@@ -62,16 +62,17 @@ public class Controller {
                 if (j <= 255) {
                     Platform.runLater(() -> {
                         planeCrash.setX(planeCrash.getX() + 1);
-                        planeCrash.setRotate((80.0 * (1 - (planeCrash.getX() / 255.0))));
-                        if (labelNum % 3 == 0 || labelNum % 5 == 0) {
-                            System.out.println("1231321");
+                        if (labelNum * 100 <= 240) {
+                            planeCrash.setRotate((80.0 * (1 - (planeCrash.getX() / 255.0))));
+                        }
+                        if (((int) (labelNum * 100)) % 3 == 0 || ((int) (labelNum * 100)) % 5 == 0) {
                             planeCrash.setY(planeCrash.getY() - 1);
                         }
                     });
                 }
 
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     System.out.println("not sleep");
                 }
