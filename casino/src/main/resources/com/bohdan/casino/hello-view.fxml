@@ -15,10 +15,15 @@
                   <Font name="MS Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="TextMoney" layoutX="75.0" prefHeight="48.0" prefWidth="321.0" text="100$">
+            <Label fx:id="TextMoney" layoutX="75.0" prefHeight="48.0" prefWidth="321.0" text="100">
                <font>
                   <Font name="Yu Gothic Regular" size="12.0" />
                </font></Label>
+            <Button fx:id="getMoney" layoutY="33.0" mnemonicParsing="false" onAction="#getSomeMoney" prefHeight="15.0" prefWidth="14.0" text="+">
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Button>
          </children></Pane>
       <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
          <children>
@@ -58,6 +63,7 @@
             <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.462%" />
             <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
             <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
+            <TextField fx:id="betSomeMoney" layoutX="126.0" layoutY="210.0" onKeyPressed="#keyPressedBet" />
          </children></Pane>
       <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
          <children>

@@ -10,6 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -21,7 +23,7 @@ import java.util.Random;
 
 public class Controller {
 
-    private int counter, level = 4,money;
+    private int counter, level = 4, money = 100, bet;
     Random rnd = new Random();
     private final Image[] icons = {
             new Image(getClass().getResourceAsStream("/lemon.png")),
@@ -40,17 +42,35 @@ public class Controller {
     @FXML
     private Pane mainMenuPane, classicGamePane, crashGamePane, babloPane;
     @FXML
-    private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame, enterMoney;
+    private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame, enterMoney, getMoney;
     @FXML
     private ImageView icon1, icon2, icon3, icon4, planeCrash;
     @FXML
     private ComboBox<String> comboBoxClassick;
     @FXML
     private Label classickChanse, numOfWin, TextMoney;
+
+    @FXML
+    private TextField betSomeMoney;
     private ArrayList<ImageView> iconsArr = new ArrayList<>();
 
     private boolean spinning = false, flying = false;
     double planeX, planeY, presentMultiply;
+
+    @FXML
+    protected void keyPressedBet(KeyEvent event) {
+        String character = event.getCharacter();
+        System.out.println(character);
+        if (!character.matches("[0-9]")) {
+            event.consume();
+        }
+        spinButton.setDisable(false);
+    }
+    @FXML
+    protected void getSomeMoney(){
+        if(money<100)
+            money+=10;
+    }
 
     @FXML
     protected void Poletily() {
@@ -62,9 +82,9 @@ public class Controller {
         flying = true;
         new Thread(() -> {
             for (int j = 0; j < pointOfDeath * 100; j += 1) {
-                double labelNum = j / 100.0+1;
+                double labelNum = j / 100.0 + 1;
                 presentMultiply = labelNum;
-                Platform.runLater(() -> numOfWin.setText(df.format(labelNum)+"x"));
+                Platform.runLater(() -> numOfWin.setText(df.format(labelNum) + "x"));
                 if (j <= 255) {
                     Platform.runLater(() -> {
                         planeCrash.setX(planeCrash.getX() + 1);
@@ -86,7 +106,7 @@ public class Controller {
                         Thread.sleep(60);
                     else if (j < 900)
                         Thread.sleep(50);
-                    else if(j<1500)
+                    else if (j < 1500)
                         Thread.sleep(30);
                     else Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -108,7 +128,7 @@ public class Controller {
         stopButton.setDisable(true);
     }
 
-    public void placeInStartPos(){
+    public void placeInStartPos() {
         planeCrash.setRotate(90);
         planeCrash.setImage(planeImage);
         planeCrash.setX(planeX);
@@ -135,6 +155,7 @@ public class Controller {
                 "Важкий"
         );
         comboBoxClassick.setItems(options);
+        spinButton.setDisable(true);
     }
 
     @FXML
@@ -190,17 +211,19 @@ public class Controller {
 
     @FXML
     protected void spin() {
-
+        bet=Integer.parseInt(betSomeMoney.getText());
         if (spinning) {
             return;
         }
+        if(money-bet<0)return;
+        money-=bet;
+        setMoney();
         counter = iconsArr.size();
         spinning = true;
         spinButton.setDisable(true);
         comboBoxClassick.setDisable(true);
         classicCircle.setFill(Color.WHITE);
         Thread[] threads = new Thread[iconsArr.size()];
-
         Object lock = new Object();
 
         for (int i = 0; i < threads.length; i++) {
@@ -214,21 +237,40 @@ public class Controller {
 
     private void checkWinInClassick() {
         Image firstImage = iconsArr.get(0).getImage();
+        boolean isWinner = true;
         for (ImageView icon : iconsArr) {
             if (!icon.getImage().equals(firstImage)) {
-                classicCircle.setFill(Color.BLACK);
-                return;
-            } else {
-                if (firstImage.equals(icons[0])) classicCircle.setFill(Color.LIGHTYELLOW);
-                if (firstImage.equals(icons[1])) classicCircle.setFill(Color.INDIANRED);
-                if (firstImage.equals(icons[2])) classicCircle.setFill(Color.PURPLE);
-                if (firstImage.equals(icons[3])) classicCircle.setFill(Color.RED);
-                if (firstImage.equals(icons[4])) classicCircle.setFill(Color.GOLD);
-                if (firstImage.equals(icons[5])) classicCircle.setFill(Color.LIGHTGOLDENRODYELLOW);
+                isWinner = false;
+                break; // Перервати цикл, якщо знайдено різні картинки
             }
         }
+
+        if (isWinner) {
+            classicCircle.setFill(getColorForImage(firstImage));
+            if (level == 2)
+                money += bet * level;
+            else if (level == 3)
+                money += bet * 10;
+            else
+                money += bet * 100;
+            setMoney();
+        } else {
+            classicCircle.setFill(Color.BLACK);
+        }
+    }
+    private Color getColorForImage(Image image) {
+        if (image.equals(icons[0])) return Color.LIGHTYELLOW;
+        if (image.equals(icons[1])) return Color.INDIANRED;
+        if (image.equals(icons[2])) return Color.PURPLE;
+        if (image.equals(icons[3])) return Color.RED;
+        if (image.equals(icons[4])) return Color.GOLD;
+        if (image.equals(icons[5])) return Color.LIGHTGOLDENRODYELLOW;
+        return Color.BLACK;
     }
 
+    private void setMoney(){
+        Platform.runLater(() ->  TextMoney.setText(String.valueOf(money)));
+    }
     private Thread createIconThread(ImageView icon, Image[] icons, Object lock) {
         return new Thread(() -> {
 
