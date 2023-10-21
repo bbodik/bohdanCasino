@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class Controller {
 
-    private int counter, level = 4;
+    private int counter, level = 4,money;
     Random rnd = new Random();
     private final Image[] icons = {
             new Image(getClass().getResourceAsStream("/lemon.png")),
@@ -36,16 +36,17 @@ public class Controller {
 
     @FXML
     private Circle classicCircle;
+
     @FXML
-    private Pane mainMenuPane, classicGamePane, crashGamePane;
+    private Pane mainMenuPane, classicGamePane, crashGamePane, babloPane;
     @FXML
-    private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame;
+    private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame, enterMoney;
     @FXML
     private ImageView icon1, icon2, icon3, icon4, planeCrash;
     @FXML
     private ComboBox<String> comboBoxClassick;
     @FXML
-    private Label classickChanse, numOfWin;
+    private Label classickChanse, numOfWin, TextMoney;
     private ArrayList<ImageView> iconsArr = new ArrayList<>();
 
     private boolean spinning = false, flying = false;
@@ -53,10 +54,7 @@ public class Controller {
 
     @FXML
     protected void Poletily() {
-        planeCrash.setImage(planeImage);
-        planeCrash.setX(planeX);
-        planeCrash.setY(planeY);
-        planeCrash.setRotate(90);
+        placeInStartPos();
         double pointOfDeath = generateDeathPoint();
         upButton.setDisable(true);
         stopButton.setDisable(false);
@@ -64,9 +62,9 @@ public class Controller {
         flying = true;
         new Thread(() -> {
             for (int j = 0; j < pointOfDeath * 100; j += 1) {
-                double labelNum = j / 100.0;
+                double labelNum = j / 100.0+1;
                 presentMultiply = labelNum;
-                Platform.runLater(() -> numOfWin.setText(df.format(labelNum)));
+                Platform.runLater(() -> numOfWin.setText(df.format(labelNum)+"x"));
                 if (j <= 255) {
                     Platform.runLater(() -> {
                         planeCrash.setX(planeCrash.getX() + 1);
@@ -80,7 +78,17 @@ public class Controller {
                 }
 
                 try {
-                    Thread.sleep(10);
+                    if (j < 150)
+                        Thread.sleep(100);
+                    else if (j < 240)
+                        Thread.sleep(70);
+                    else if (j < 430)
+                        Thread.sleep(60);
+                    else if (j < 900)
+                        Thread.sleep(50);
+                    else if(j<1500)
+                        Thread.sleep(30);
+                    else Thread.sleep(10);
                 } catch (InterruptedException e) {
                     System.out.println("not sleep");
                 }
@@ -100,6 +108,13 @@ public class Controller {
         stopButton.setDisable(true);
     }
 
+    public void placeInStartPos(){
+        planeCrash.setRotate(90);
+        planeCrash.setImage(planeImage);
+        planeCrash.setX(planeX);
+        planeCrash.setY(planeY);
+    }
+
 
     @FXML
     protected void startClassicMode() {
@@ -109,6 +124,7 @@ public class Controller {
         iconsArr.add(icon4);
         mainMenuPane.setVisible(false);
         classicGamePane.setVisible(true);
+        babloPane.setVisible(true);
         icon1.setImage(icons[5]);
         icon2.setImage(icons[5]);
         icon3.setImage(icons[5]);
@@ -126,6 +142,7 @@ public class Controller {
         mainMenuPane.setVisible(true);
         crashGamePane.setVisible(false);
         classicGamePane.setVisible(false);
+        babloPane.setVisible(false);
     }
 
     @FXML
@@ -163,10 +180,12 @@ public class Controller {
 
     @FXML
     protected void startCrashMode() {
+        babloPane.setVisible(true);
         mainMenuPane.setVisible(false);
         crashGamePane.setVisible(true);
         planeCrash.setImage(planeImage);
         double planeX = planeCrash.getX(), planeY = planeCrash.getY();
+        placeInStartPos();
     }
 
     @FXML
