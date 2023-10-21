@@ -31,7 +31,8 @@ public class Controller {
             new Image(getClass().getResourceAsStream("/coin.png")),
             new Image(getClass().getResourceAsStream("/seven.png"))
     };
-    private Image planeImage = new Image(getClass().getResourceAsStream("/rocket.png"));
+    private Image planeImage = new Image(getClass().getResourceAsStream("/rocket.png")),
+            boomImage = new Image(getClass().getResourceAsStream("/boom.png"));
 
     @FXML
     private Circle classicCircle;
@@ -47,17 +48,24 @@ public class Controller {
     private Label classickChanse, numOfWin;
     private ArrayList<ImageView> iconsArr = new ArrayList<>();
 
-    private boolean spinning = false;
+    private boolean spinning = false, flying = false;
+    double planeX, planeY, presentMultiply;
 
     @FXML
     protected void Poletily() {
+        planeCrash.setImage(planeImage);
+        planeCrash.setX(planeX);
+        planeCrash.setY(planeY);
+        planeCrash.setRotate(90);
         double pointOfDeath = generateDeathPoint();
         upButton.setDisable(true);
         stopButton.setDisable(false);
         DecimalFormat df = new DecimalFormat("#.##");
+        flying = true;
         new Thread(() -> {
             for (int j = 0; j < pointOfDeath * 100; j += 1) {
                 double labelNum = j / 100.0;
+                presentMultiply = labelNum;
                 Platform.runLater(() -> numOfWin.setText(df.format(labelNum)));
                 if (j <= 255) {
                     Platform.runLater(() -> {
@@ -76,8 +84,20 @@ public class Controller {
                 } catch (InterruptedException e) {
                     System.out.println("not sleep");
                 }
+
             }
+            planeCrash.setImage(boomImage);
+            flying = false;
+            stopButton.setDisable(true);
+            upButton.setDisable(false);
+
         }).start();
+    }
+
+    @FXML
+    protected void cashOut() {
+        System.out.println(presentMultiply);
+        stopButton.setDisable(true);
     }
 
 
@@ -146,6 +166,7 @@ public class Controller {
         mainMenuPane.setVisible(false);
         crashGamePane.setVisible(true);
         planeCrash.setImage(planeImage);
+        double planeX = planeCrash.getX(), planeY = planeCrash.getY();
     }
 
     @FXML
