@@ -15,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,7 +24,8 @@ import java.util.Random;
 
 public class Controller {
 
-    private int counter, level = 4, money = 100, bet;
+    private int counter, level = 4;
+    private double money = 100, bet;
     Random rnd = new Random();
     private final Image[] icons = {
             new Image(getClass().getResourceAsStream("/lemon.png")),
@@ -325,20 +328,19 @@ public class Controller {
     }
 
     public double generateDeathPoint() {
-        double multiplier = 1.0; // Початковий множник
-        double currentNumber = 1.0; // Початкове число
+        long e = (long) Math.pow(2, 32);
+        SecureRandom secureRandom = new SecureRandom();
+        long h = secureRandom.nextLong() & 0xFFFFFFFFL; // Generate a random 32-bit unsigned integer
 
-        while (true) {
-            double randomNumber = rnd.nextDouble(); // Генеруємо випадкове число від 0.0 до 1.0
+        // If h % 33 is 0, the game will crash immediately
+        if (h % 33 == 0) {
+            return 1.00;
+        }
 
-            if (randomNumber > 1.0 / (currentNumber * 0.5)) {
-                // Вибух
-                return currentNumber;
-            }
-
-            // Збільшуємо число
-            multiplier += 0.1; // Можете налаштувати збільшення множника за вашими потребами
-            currentNumber *= multiplier;
+        // Calculate the probability of not crashing
+        double probability = (100.0 * e - h) / (e - h);
+        System.out.println((Math.floor(probability) / 100.0)+1);
+        return Math.floor(probability) / 100.0;
         }
     }
-}
+
