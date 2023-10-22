@@ -25,7 +25,7 @@ import java.util.Random;
 public class Controller {
 
     private int counter, level = 4;
-    private double money = 100, bet;
+    private float money = 100, bet;
     Random rnd = new Random();
     private final Image[] icons = {
             new Image(getClass().getResourceAsStream("/lemon.png")),
@@ -77,7 +77,7 @@ public class Controller {
 
     @FXML
     protected void Poletily() {
-        bet=Integer.parseInt(betSomeMoney1.getText());
+        bet=Float.parseFloat(betSomeMoney1.getText());
         stopButton.setDisable(false);
         if (flying||money-bet<0) {
             return;
@@ -337,6 +337,7 @@ public class Controller {
             return 1.00;
         }
 
+        // Calculate the probability of not crashing
         // Calculate the probability of not crashing
         double probability = (100.0 * e - h) / (e - h);
         System.out.println((Math.floor(probability) / 100.0)+1);
