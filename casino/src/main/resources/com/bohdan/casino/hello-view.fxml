@@ -63,7 +63,7 @@
             <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.462%" />
             <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
             <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
-            <TextField fx:id="betSomeMoney" layoutX="126.0" layoutY="210.0" onKeyPressed="#keyPressedBet" />
+            <TextField fx:id="betSomeMoney" layoutX="126.0" layoutY="210.0" onKeyPressed="#keyPressedBet" promptText="Поставте бабло" />
          </children></Pane>
       <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
          <children>
@@ -86,6 +86,7 @@
             </Button>
             <Button fx:id="backToMainMenuButtonInCrashGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
             <ImageView fx:id="planeCrash" fitHeight="120.0" fitWidth="60.0" layoutX="59.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
+            <TextField fx:id="betSomeMoney1" layoutX="445.0" layoutY="125.0" onKeyPressed="#keyPressedBet" promptText="Поставте бабло" />
          </children></Pane>
    </children>
 </Pane>

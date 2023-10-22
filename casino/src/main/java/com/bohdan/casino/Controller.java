@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
 import java.text.DecimalFormat;
 import java.awt.*;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class Controller {
     private Label classickChanse, numOfWin, TextMoney;
 
     @FXML
-    private TextField betSomeMoney;
+    private TextField betSomeMoney, betSomeMoney1;
     private ArrayList<ImageView> iconsArr = new ArrayList<>();
 
     private boolean spinning = false, flying = false;
@@ -59,13 +58,14 @@ public class Controller {
 
     @FXML
     protected void keyPressedBet(KeyEvent event) {
-        String character = event.getCharacter();
-        System.out.println(character);
-        if (!character.matches("[0-9]")) {
-            event.consume();
+        String character = event.getCode().getName();
+        if (!(character.length() == 1 && Character.isDigit(character.charAt(0)))) {
+            betSomeMoney.setText("");
         }
+        upButton.setDisable(false);
         spinButton.setDisable(false);
     }
+
     @FXML
     protected void getSomeMoney(){
         if(money<100)
@@ -74,6 +74,14 @@ public class Controller {
 
     @FXML
     protected void Poletily() {
+        bet=Integer.parseInt(betSomeMoney1.getText());
+        stopButton.setDisable(false);
+        if (flying||money-bet<0) {
+            return;
+        }
+
+        money-=bet;
+        setMoney();
         placeInStartPos();
         double pointOfDeath = generateDeathPoint();
         upButton.setDisable(true);
@@ -124,7 +132,8 @@ public class Controller {
 
     @FXML
     protected void cashOut() {
-        System.out.println(presentMultiply);
+        money+=bet*presentMultiply;
+        setMoney();
         stopButton.setDisable(true);
     }
 
@@ -202,8 +211,10 @@ public class Controller {
     @FXML
     protected void startCrashMode() {
         babloPane.setVisible(true);
+        stopButton.setDisable(true);
         mainMenuPane.setVisible(false);
         crashGamePane.setVisible(true);
+        upButton.setDisable(true);
         planeCrash.setImage(planeImage);
         double planeX = planeCrash.getX(), planeY = planeCrash.getY();
         placeInStartPos();
@@ -212,10 +223,10 @@ public class Controller {
     @FXML
     protected void spin() {
         bet=Integer.parseInt(betSomeMoney.getText());
-        if (spinning) {
+        if (spinning||money-bet<0) {
             return;
         }
-        if(money-bet<0)return;
+
         money-=bet;
         setMoney();
         counter = iconsArr.size();
