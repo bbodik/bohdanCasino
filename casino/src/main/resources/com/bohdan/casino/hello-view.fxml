@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.Controller">
    <children>
-      <Pane fx:id="babloPane" layoutX="204.0" prefHeight="48.0" prefWidth="396.0">
+      <Pane fx:id="babloPane" layoutX="204.0" prefHeight="48.0" prefWidth="396.0" visible="false">
          <children>
             <Label layoutX="-1.0" prefHeight="48.0" prefWidth="74.0" text="Бабло:">
                <font>
@@ -45,6 +45,7 @@
                   <Font name="Papyrus" size="13.0" />
                </font>
             </Button>
+            <Button layoutX="263.0" layoutY="186.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="74.0" text="{g" />
          </children>
       </Pane>
       <Pane fx:id="classicGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
