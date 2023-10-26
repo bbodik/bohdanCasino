@@ -42,7 +42,7 @@ public class Controller {
     private Circle classicCircle;
 
     @FXML
-    private Pane mainMenuPane, classicGamePane, crashGamePane, babloPane;
+    private Pane mainMenuPane, classicGamePane, crashGamePane, babloPane, gayWayPane;
     @FXML
     private Button spinButton, upButton, stopButton, backToMainMenuButtonInClassicGame, enterMoney, getMoney;
     @FXML
@@ -148,6 +148,12 @@ public class Controller {
     }
 
 
+    @FXML
+    protected void startGayWayGame() {
+        mainMenuPane.setVisible(false);
+        babloPane.setVisible(true);
+        gayWayPane.setVisible(true);
+    }
     @FXML
     protected void startClassicMode() {
         iconsArr.add(icon1);

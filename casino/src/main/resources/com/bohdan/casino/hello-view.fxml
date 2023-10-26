@@ -45,7 +45,7 @@
                   <Font name="Papyrus" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="263.0" layoutY="186.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="74.0" text="{g" />
+            <Button layoutX="263.0" layoutY="186.0" mnemonicParsing="false" onAction="#startGayWayGame" prefHeight="35.0" prefWidth="74.0" text="Gay Way" />
          </children>
       </Pane>
       <Pane fx:id="classicGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
@@ -89,5 +89,6 @@
             <ImageView fx:id="planeCrash" fitHeight="120.0" fitWidth="60.0" layoutX="59.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
             <TextField fx:id="betSomeMoney1" layoutX="445.0" layoutY="125.0" onKeyPressed="#keyPressedBet" promptText="Поставте бабло" />
          </children></Pane>
+      <Pane fx:id="gayWayPane" prefHeight="337.0" prefWidth="600.0" />
    </children>
 </Pane>
