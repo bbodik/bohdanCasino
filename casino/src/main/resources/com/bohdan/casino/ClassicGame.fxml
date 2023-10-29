@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="classicGamePane" prefHeight="337.0" prefWidth="600.0" visible="false"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bohdan.casino.ClassicGame">
+    <children>
+        <ImageView fx:id="icon1" fitHeight="100.0" fitWidth="100.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="icon2" fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="icon3" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="icon4" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="spinButton" layoutX="126.0" layoutY="235.0" mnemonicParsing="false" onAction="#spin" prefHeight="55.0" prefWidth="355.0" text="Крутити">
+            <font>
+                <Font name="MS Gothic" size="27.0" />
+            </font>
+        </Button>
+        <Circle fx:id="classicCircle" fill="WHITE" layoutX="522.0" layoutY="110.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" />
+        <Label layoutX="13.0" layoutY="36.0" prefHeight="35.0" prefWidth="150.0" text="Ймовірність виграти = " />
+        <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.462%" />
+        <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
+        <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
+        <TextField fx:id="betSomeMoney" layoutX="126.0" layoutY="210.0" promptText="Поставте бабло" />
+    </children></Pane>

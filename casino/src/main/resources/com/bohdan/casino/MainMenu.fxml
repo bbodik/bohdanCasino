@@ -25,7 +25,7 @@
                </font>
             </Button>
          </children></Pane>
-      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0">
+      <Pane fx:id="mainMenuPane" prefHeight="337.0" prefWidth="600.0" visible="true">
          <children>
             <ImageView fitHeight="337.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,24 +48,7 @@
             <Button layoutX="263.0" layoutY="186.0" mnemonicParsing="false" onAction="#startGayWayGame" prefHeight="35.0" prefWidth="74.0" text="Gay Way" />
          </children>
       </Pane>
-      <Pane fx:id="classicGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
-         <children>
-            <ImageView fx:id="icon1" fitHeight="100.0" fitWidth="100.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="icon2" fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="icon3" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="icon4" fitHeight="100.0" fitWidth="100.0" layoutX="340.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="spinButton" layoutX="126.0" layoutY="235.0" mnemonicParsing="false" onAction="#spin" prefHeight="55.0" prefWidth="355.0" text="Крутити">
-               <font>
-                  <Font name="MS Gothic" size="27.0" />
-               </font>
-            </Button>
-            <Circle fx:id="classicCircle" fill="WHITE" layoutX="522.0" layoutY="110.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" />
-            <Label layoutX="13.0" layoutY="36.0" prefHeight="35.0" prefWidth="150.0" text="Ймовірність виграти = " />
-            <Label fx:id="classickChanse" layoutX="142.0" layoutY="37.0" prefHeight="35.0" prefWidth="74.0" text="0.462%" />
-            <ComboBox fx:id="comboBoxClassick" layoutX="10.0" layoutY="14.0" onAction="#changeDiff" prefWidth="150.0" promptText="Виберіть рівень" />
-            <Button fx:id="backToMainMenuButtonInClassicGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
-            <TextField fx:id="betSomeMoney" layoutX="126.0" layoutY="210.0" onKeyPressed="#keyPressedBet" promptText="Поставте бабло" />
-         </children></Pane>
+      <fx:include source="ClassicGame.fxml"/>
       <Pane fx:id="crashGamePane" prefHeight="337.0" prefWidth="600.0" visible="false">
          <children>
             <Line endX="-100.0" endY="258.0" layoutX="128.0" layoutY="34.0" startX="-100.0" strokeWidth="2.0" />
@@ -87,11 +70,12 @@
             </Button>
             <Button fx:id="backToMainMenuButtonInCrashGame" layoutY="312.0" mnemonicParsing="false" onAction="#backToMainMenuButton" prefHeight="25.0" prefWidth="113.0" text="На головне меню" />
             <ImageView fx:id="planeCrash" fitHeight="120.0" fitWidth="60.0" layoutX="59.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-            <TextField fx:id="betSomeMoney1" layoutX="445.0" layoutY="125.0" onKeyPressed="#keyPressedBet" promptText="Поставте бабло" />
+            <TextField fx:id="betSomeMoney1" layoutX="445.0" layoutY="125.0"  promptText="Поставте бабло" />
          </children></Pane>
       <Pane fx:id="gayWayPane" prefHeight="337.0" prefWidth="600.0">
          <children>
-            <Circle fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="stepXWin" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="53.0" text="???" />
+            <Label layoutX="72.0" layoutY="18.0" text="х" />
          </children></Pane>
    </children>
 </Pane>
